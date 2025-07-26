@@ -69,14 +69,14 @@ void arr_default() {
         free(pointer_array[i]);
     }
 
+    free(pointer_array);
+
     printf("\n");
 }
 
-
-
 void second_arr() {
     const int m = 4, n = 4;
-    int** pointer_array = malloc(m * n * sizeof(int));
+    int** pointer_array = malloc(m * sizeof(int*));
     int* values_array = malloc(m * n * sizeof(int));
     int count = 0;
 
@@ -100,11 +100,4 @@ void second_arr() {
     free(pointer_array);
 
     printf("\n");
-}
-
-
-void functions_call() {
-    within_one_buffer();
-    arr_default();
-    second_arr();
 }
