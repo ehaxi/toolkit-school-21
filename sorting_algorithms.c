@@ -8,7 +8,7 @@ void merge_sort(int *b, int left, int right);
 void heap_sort(int *c);
 void heapify(int *c, int n, int i);
 void quick_sort(int *d, int left, int right);
-void output(int *a, int *b, int *c);
+void output(int *a, int *b, int *c, int *d);
 
 int main() {
     int data[NMAX];
@@ -28,7 +28,7 @@ int main() {
     merge_sort(data_ms, 0, NMAX - 1);
     heap_sort(data_hs);
     quick_sort(data_qs, 0, NMAX - 1);
-    output(data_bs, data_ms, data_hs);
+    output(data_bs, data_ms, data_hs, data_qs);
 }
 
 void swap(int *x, int *y) {
@@ -134,15 +134,15 @@ void heapify(int *c, int n, int i) {
 }
 
 void quick_sort(int *d, int left, int right) {
-    if (left >= right) return;
+    if (left > right) return;
 
     int p = d[(left + right) / 2];
     int i = left;
     int j = right;
 
     while (i <= j) {
-        while (d[i] <= p) ++i;
-        while (d[j] >= p) --j;
+        while (d[i] < p) ++i;
+        while (d[j] > p) --j;
 
         if (i <= j) {
             swap(&d[i], &d[j]);
@@ -151,11 +151,11 @@ void quick_sort(int *d, int left, int right) {
         }
     }
 
-    quick_sort(d, left, i);
-    quick_sort(d, j, right);
+    quick_sort(d, left, j);
+    quick_sort(d, i, right);
 }
 
-void output(int *a, int *b, int *c) {
+void output(int *a, int *b, int *c, int *d) {
     for (int *p = a; p - a < NMAX; ++p) {
         printf("%d ", *p);
     }
@@ -169,6 +169,12 @@ void output(int *a, int *b, int *c) {
     printf("\n");
 
     for (int *p = c; p - c < NMAX; ++p) {
+        printf("%d ", *p);
+    }
+
+    printf("\n");
+
+    for (int *p = d; p - d < NMAX; ++p) {
         printf("%d ", *p);
     }
 
