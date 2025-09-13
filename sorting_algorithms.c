@@ -8,7 +8,13 @@ void merge_sort(int *b, int left, int right);
 void heap_sort(int *c);
 void heapify(int *c, int n, int i);
 void quick_sort(int *d, int left, int right);
+void selection_sort(int *e);
+void insertion_sort(int *f);
 void output(int *a, int *b, int *c, int *d);
+
+// TODO: Add array configuration for Selection Sort
+
+// TODO: Add array configuration for Insertion Sort
 
 int main() {
     int data[NMAX];
@@ -154,6 +160,41 @@ void quick_sort(int *d, int left, int right) {
     quick_sort(d, left, j);
     quick_sort(d, i, right);
 }
+
+void selection_sort(int *e) {
+    int idmn;
+
+    for (int i = 0; i < NMAX; ++i) {
+        idmn = i;
+
+        for (int j = i + 1; j < NMAX; ++j) {
+            if (e[j] < e[idmn]) {
+                idmn = j;
+            }
+        }
+        swap(e[i], e[idmn]);
+    }
+}
+
+void insertion_sort(int *f) {
+    int tmp, j;
+
+    for (int i = 0; i < NMAX; ++i) {
+        tmp = f[i];
+        
+        for (j = i - 1; j >= 0 && f[j] > tmp; --j) {
+            f[j + 1] = f[j];
+        }
+
+        f[j + 1] = tmp;
+    }
+}
+
+// TODO: Counting Sort
+
+// TODO: LSD
+
+// TODO: MSD
 
 void output(int *a, int *b, int *c, int *d) {
     for (int *p = a; p - a < NMAX; ++p) {
